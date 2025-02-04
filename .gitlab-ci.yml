@@ -1,0 +1,33 @@
+stages:
+  - test
+  - publish
+
+variables:
+  UV_PUBLISH_URL: "${CI_API_V4_URL}/projects/${CI_PROJECT_ID}/packages/pypi"
+  UV_PUBLISH_USERNAME: "gitlab-ci-token"
+  UV_PUBLISH_PASSWORD: "${CI_JOB_TOKEN}"
+
+test-sqlguard:
+  stage: test
+  image: ghcr.io/astral-sh/uv:debian-slim
+  script:
+    - export UV_LINK_MODE=copy
+    - uv sync --all-extras
+    - uv run pytest
+
+test-tox-sqlguard:
+  stage: test
+  image: ghcr.io/astral-sh/uv:debian-slim
+  script:
+    - uv tool install tox --with tox-uv
+    - export PATH="/root/.local/bin:$PATH"
+    - tox run
+
+publish-sqlguard:
+  stage: publish
+  image: ghcr.io/astral-sh/uv:debian-slim
+  script:
+    - uv build
+    - uv publish
+  only:
+    - tags

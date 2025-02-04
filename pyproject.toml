@@ -1,0 +1,101 @@
+[project]
+name = "pytest-sqlguard"
+version = "2025.305.2"
+description = "Pytest fixture to record and check SQL Queries made by SQLAlchemy"
+authors = [{ name = "Manu", email = "manuel.vives@paylead.fr" }]
+requires-python = ">=3.8"
+dependencies = [
+    "filelock>=3",
+    "pytest>=7",
+    "pyyaml>=6.0.2",
+    "sqlalchemy>=2.0.31",
+    "sqlparse>=0.4",
+]
+classifiers = [
+    "Development Status :: 4 - Beta",
+
+    # Indicate who your project is intended for
+    "Intended Audience :: Developers",
+    "Topic :: Software Development :: Build Tools",
+    "Topic :: Software Development :: Testing",
+    "Topic :: Software Development :: Testing :: BDD",
+    "Framework :: Pytest",
+
+    # Python version
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+
+    "Programming Language :: SQL",
+]
+
+[dependency-groups]
+dev = [
+    "bumpver>=2024.1130",
+    "click",
+    "pyright",
+    "pytest-clarity",
+    "pyyaml",
+    "ruff",
+    "termcolor",
+]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project.entry-points.pytest11]
+sqlguard = "pytest_sqlguard.sqlguard"
+
+
+[tool.ruff]
+line-length = 120
+# warning: The following rules may cause conflicts when used with the formatter: `COM812`.
+# To avoid unexpected behavior, we recommend disabling these rules,
+# either by removing them from the `select` or `extend-select` configuration,
+# or adding them to the `ignore` configuration.
+lint.select = ["E", "W", "F", "I", "D300"]
+lint.unfixable = [
+    # This will prevent ruff from removing
+    # variables not (yet) used
+    # It will still keep the warning though :)
+    "F841",
+]
+exclude = [
+    # What is listed in .gitignore don't need to be specified here
+    ".ebextensions",
+    ".hook",
+    ".local",
+    ".venv/",
+    "**/.venv/*",
+    "template/**",
+]
+
+[tool.pyright]
+include = ["src"]
+exclude = ["**/__pycache__"]
+defineConstant = { DEBUG = true }
+
+reportMissingImports = "error"
+reportMissingTypeStubs = false
+
+pythonVersion = "3.12"
+pythonPlatform = "Linux"
+
+executionEnvironments = [{ root = "src" }]
+
+[tool.bumpver]
+current_version = "2025.305.2"
+version_pattern = "YYYY.MM0D.INC0[-TAG]"
+commit_message = "bump version {old_version} -> {new_version}"
+tag_message = "{new_version}"
+tag_scope = "default"
+commit = true
+tag = true
+push = false
+
+[tool.bumpver.file_patterns]
+"pyproject.toml" = ['^version = "{version}"', '^current_version = "{version}"']

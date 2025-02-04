@@ -1,0 +1,9 @@
+TestSQLGuardFailMissing::test_disabled:
+  queries:
+  - statement: CREATE TABLE TestSQLGuardFailMissing_test_disabled(i int, t text)
+TestSQLGuardOverwrite::test_disabled:
+  queries:
+  - statement: CREATE TABLE TestSQLGuardOverwrite_test_disabled(i int, t text)
+TestSQLGuardOverwrite::test_enabled:
+  queries:
+  - statement: CREATE TABLE TestSQLGuardOverwrite_test_enabled(i int, t text)
