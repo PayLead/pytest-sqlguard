@@ -1,8 +1,10 @@
 [project]
 name = "pytest-sqlguard"
-version = "2025.305.2"
+version = "2025.305.10"
 description = "Pytest fixture to record and check SQL Queries made by SQLAlchemy"
 authors = [{ name = "Manu", email = "manuel.vives@paylead.fr" }]
+readme = "README.md"
+license = "MIT"
 requires-python = ">=3.8"
 dependencies = [
     "filelock>=3",
@@ -12,6 +14,7 @@ dependencies = [
     "sqlparse>=0.4",
 ]
 classifiers = [
+    "License :: OSI Approved :: MIT License",
     "Development Status :: 4 - Beta",
 
     # Indicate who your project is intended for
@@ -88,7 +91,7 @@ pythonPlatform = "Linux"
 executionEnvironments = [{ root = "src" }]
 
 [tool.bumpver]
-current_version = "2025.305.2"
+current_version = "2025.305.10"
 version_pattern = "YYYY.MM0D.INC0[-TAG]"
 commit_message = "bump version {old_version} -> {new_version}"
 tag_message = "{new_version}"

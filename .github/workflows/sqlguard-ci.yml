@@ -4,6 +4,8 @@ on:
   push:
     branches:
       - main
+    tags:
+      - "*"
   pull_request:
     branches:
       - main
@@ -37,7 +39,7 @@ jobs:
       - name: Run Tox suite
         run: tox run
 
-  publish-sqlguard:
+  build-sqlguard:
     needs: [test-sqlguard, test-tox-sqlguard]
     if: startsWith(github.ref, 'refs/tags/')
     runs-on: ubuntu-latest
@@ -46,10 +48,28 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
-
-      - name: Build and publish package
-        env:
-          PYPI_API_TOKEN: ${{ secrets.PYPI_API_TOKEN }}
-        run: |
-          uv build
-          uv publish
+      - name: Build package
+        run: uv build
+      - name: "Upload Artifact"
+        uses: actions/upload-artifact@v4
+        with:
+          name: sqlguard-dist
+          path: dist
+          retention-days: 5
+  publish-sqlguard:
+    needs: [build-sqlguard]
+    if: startsWith(github.ref, 'refs/tags/')
+    runs-on: ubuntu-latest
+    permissions:
+      # IMPORTANT: this permission is mandatory for Trusted Publishing
+      id-token: write
+      # Needed for fetching the code
+      contents: read
+    steps:
+      - name: Download Artifacts
+        uses: actions/download-artifact@v4
+        with:
+          name: sqlguard-dist
+          path: dist
+      - name: Publish package distributions to PyPI
+        uses: pypa/gh-action-pypi-publish@release/v1
