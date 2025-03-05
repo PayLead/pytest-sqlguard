@@ -1,0 +1,55 @@
+name: SQLGuard CI/CD
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  test-sqlguard:
+    runs-on: ubuntu-latest
+    container:
+      image: ghcr.io/astral-sh/uv:debian-slim
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Run tests with uv
+        run: |
+          export UV_LINK_MODE=copy
+          uv sync --all-extras
+          uv run pytest
+
+  test-tox-sqlguard:
+    runs-on: ubuntu-latest
+    container:
+      image: ghcr.io/astral-sh/uv:debian-slim
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      - name: Install Tox & Tox UV
+        run: |
+          uv tool install tox --with tox-uv
+          echo "$HOME/.local/bin" >> $GITHUB_PATH
+      - name: Run Tox suite
+        run: tox run
+
+  publish-sqlguard:
+    needs: [test-sqlguard, test-tox-sqlguard]
+    if: startsWith(github.ref, 'refs/tags/')
+    runs-on: ubuntu-latest
+    container:
+      image: ghcr.io/astral-sh/uv:debian-slim
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Build and publish package
+        env:
+          PYPI_API_TOKEN: ${{ secrets.PYPI_API_TOKEN }}
+        run: |
+          uv build
+          uv publish
