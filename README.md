@@ -117,6 +117,14 @@ def pytest_assertrepr_compare(config, op, left, right):
     return assertrepr_compare(config, op, left, right)
 ```
 
+## Releasing a new version
+
+```bash
+# in your local shell
+bumpver update  ## Updates the version number, commits the change, tags the commit
+git push  # The deployment is made on tag push
+```
+
 ## Contributing 🤝
 
 Issues, feature requests, and contributions are warmly welcomed! Feel free to open a pull request or submit an issue.
