@@ -131,4 +131,4 @@ Issues, feature requests, and contributions are warmly welcomed! Feel free to op
 
 ## License 📜
 
-`pytest-sqlguard` is distributed under the MIT license. See [LICENSE](./LICENSE.md) for details.
+`pytest-sqlguard` is distributed under the MIT license. See [LICENSE](./LICENSE) for details.
