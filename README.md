@@ -2,7 +2,7 @@
 
 [![pytest](https://img.shields.io/badge/pytest-extension-blue)](https://docs.pytest.org/en/latest/)
 [![Python](https://img.shields.io/pypi/v/pytest-sqlguard)](https://pypi.org/project/pytest-sqlguard/)
-<!-- ![GitHub License](https://img.shields.io/github/license/PayLead/pytest-sqlguard) -->
+![GitHub License](https://img.shields.io/github/license/PayLead/pytest-sqlguard)
 
 ---
 
