@@ -117,7 +117,7 @@ def pytest_assertrepr_compare(config, op, left, right):
     return assertrepr_compare(config, op, left, right)
 ```
 
-## Releasing a new version
+## Releasing a new version 🚚
 
 ```bash
 # in your local shell
@@ -128,6 +128,14 @@ git push  # The deployment is made on tag push
 ## Contributing 🤝
 
 Issues, feature requests, and contributions are warmly welcomed! Feel free to open a pull request or submit an issue.
+
+## Credits 🙏
+This software has been created inside Paylead. Thanks to all the people that made it possible including but not limited to:
+- [Guillaume](https://github.com/moumoutte)
+- [Manu](https://github.com/manu-paylead)
+- [Loic](https://github.com/Usui22750)
+- [Jérémy](https://github.com/jeremycohensolal-paylead)
+- [Ronan](https://github.com/ronnix)
 
 ## License 📜
 
