@@ -6,7 +6,7 @@ from pathlib import Path
 # from core.tasks import task_manager
 from pytest_sqlguard.perf_rec import Queries, record_queries
 
-# Optional dependency to enable colored output in record_db_queries()
+# Optional dependency to enable colored output in sqlguard()
 try:
     from termcolor import colored
 except ImportError:
@@ -95,29 +95,29 @@ def sqlguard(
 
     Use it as a context manager:
 
-        with record_db_queries():
+        with sqlguard(session):
             ...
 
     If you want to use it multiple times in the same test, add a key param:
 
-        with record_db_queries(key="first"):
+        with sqlguard(session, key="first"):
             ...
 
-        with record_db_queries(key="second"):
+        with sqlguard(session, key="second"):
             ...
 
     Sometimes you may want to ignore and overwrite already existing reference data:
 
-        with record_db_queries(overwrite=True):
+        with sqlguard(session, overwrite=True):
             ...
 
-    You may also use the `--overwrite-queries-reference-data` pytest flag, or the
-    `RECORD_DB_QUERIES_OVERWRITE` environment variable to enable this globally.
+    You may also use the `--sqlguard-overwrite` pytest flag (Or another name you defined in your conftest),
+    to enable this globally.
 
     If you want to record the complete queries, without removing constants or
     parameters to the `SELECT` clause, set `simplify` to `False`:
 
-        with record_db_queries(simplify=False):
+        with sqlguard(session, simplify=False):
             ...
 
     If expire_all is True (Default), the SQLAlchemy session will expire all its current objects before

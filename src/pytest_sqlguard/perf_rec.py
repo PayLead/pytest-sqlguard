@@ -141,7 +141,7 @@ class QueryRecorder:
         executemany,
     ):
         """
-        See: https://docs.sqlalchemy.org/en/13/core/events.html#sqlalchemy.events.ConnectionEvents.before_cursor_execute
+        See: https://docs.sqlalchemy.org/en/20/core/events.html#sqlalchemy.events.ConnectionEvents.before_cursor_execute
         """
         if self.format_queries:
             statement = sql_format(statement, reindent=True)
