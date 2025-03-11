@@ -1,5 +1,5 @@
 """
-SQL fingerprinting code taken from django-perf-rec (version 4.5.0)
+SQL fingerprinting code taken from django-perf-rec (version 4.18.0)
 
 https://github.com/adamchainz/django-perf-rec/blob/f8f37896d781f4ab7fb195a5756d25cef43a80d7/src/django_perf_rec/sql.py
 """
