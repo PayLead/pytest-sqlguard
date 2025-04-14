@@ -1,0 +1,15 @@
+[project]
+name = "books-api"
+version = "0.1.0"
+description = "Small book api for illustrating pytest-sqlguard"
+readme = "README.md"
+requires-python = ">=3.13"
+dependencies = [
+    "fastapi[standard]>=0.115.12",
+    "pydantic>=2.11.3",
+    "pytest>=8.3.5",
+    "pytest-sqlguard>=2025.311.0",
+    "python-ulid>=3.0.0",
+    "sqlalchemy>=2.0.40",
+    "sqlalchemy-utils>=0.41.2",
+]
