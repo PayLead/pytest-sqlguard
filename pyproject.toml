@@ -40,6 +40,7 @@ dev = [
     "bumpver>=2024.1130",
     "click",
     "pyright",
+    "pytest-benchmark>=4.0.0",
     "pytest-clarity",
     "pyyaml",
     "ruff",
@@ -47,8 +48,13 @@ dev = [
 ]
 
 [build-system]
-requires = ["hatchling"]
-build-backend = "hatchling.build"
+requires = ["maturin>=1.0"]
+build-backend = "maturin"
+
+[tool.maturin]
+python-source = "src"
+module-name = "pytest_sqlguard.sqlrs"
+features = ["pyo3/extension-module"]
 
 [project.entry-points.pytest11]
 sqlguard = "pytest_sqlguard.sqlguard"

@@ -1,6 +1,6 @@
 test_file_is_created_and_contains_ok_stuff:
   queries:
-  - statement: CREATE TABLE test_1(i int, t text)
+  - statement: CREATE TABLE test_1 (i INT, t TEXT)
   - statement: |-
       SELECT *
-      from test_1
+      FROM test_1

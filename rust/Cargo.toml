@@ -1,0 +1,13 @@
+[package]
+name = "sql-rs"
+version = "0.1.0"
+edition = "2021"
+
+[lib]
+name = "sqlrs"
+crate-type = ["cdylib"]
+path = "src/lib.rs"
+
+[dependencies]
+pyo3 = { version = "0.24.1", features = ["extension-module"] }
+sql-insight = "0.2.0"

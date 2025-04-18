@@ -8,7 +8,10 @@ from filelock import FileLock
 from sqlalchemy import text
 from sqlparse import format as sql_format
 
-from pytest_sqlguard.sql import sql_fingerprint
+try:
+    from pytest_sqlguard.sqlrs import normalize_sql as sql_fingerprint
+except ImportError:
+    from pytest_sqlguard.sql import sql_fingerprint
 
 
 class Query(NamedTuple):
