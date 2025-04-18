@@ -1,0 +1,12 @@
+test_search_author:
+  queries:
+  - statement: |-
+      SELECT ...
+      FROM authors
+      WHERE authors.name = ?
+      LIMIT ?
+      OFFSET ?
+  - statement: |-
+      SELECT ...
+      FROM books
+      WHERE ? = books.author_id

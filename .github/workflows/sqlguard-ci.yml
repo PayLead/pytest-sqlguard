@@ -23,7 +23,7 @@ jobs:
         run: |
           export UV_LINK_MODE=copy
           uv sync --all-extras
-          uv run pytest
+          uv run pytest tests
 
   test-tox-sqlguard:
     runs-on: ubuntu-latest
@@ -37,7 +37,7 @@ jobs:
           uv tool install tox --with tox-uv
           echo "$HOME/.local/bin" >> $GITHUB_PATH
       - name: Run Tox suite
-        run: tox run
+        run: tox run -- tests
 
   build-sqlguard:
     needs: [test-sqlguard, test-tox-sqlguard]
