@@ -29,4 +29,4 @@ def test_file_is_created_and_contains_ok_stuff(session, sqlguard):
     queries = obj["test_file_is_created_and_contains_ok_stuff"]["queries"]
     assert queries
     assert len(queries) == 2
-    assert "CREATE TABLE test_1(i int, t text)" == queries[0]["statement"]
+    assert "CREATE TABLE test_1 (i INT, t TEXT)" == queries[0]["statement"]

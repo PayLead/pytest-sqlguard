@@ -25,7 +25,7 @@ class TestRecordQueries:
         with record_queries(session) as ctx:
             session.execute(text("SELECT 1"))
         assert len(ctx.recorder.queries) == 1
-        assert ctx.recorder.queries[0].statement == "SELECT #"
+        assert ctx.recorder.queries[0].statement == "SELECT ?"
 
 
 class TestSaveToFile:
