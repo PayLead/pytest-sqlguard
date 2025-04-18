@@ -12,17 +12,28 @@ on:
 
 jobs:
   test-sqlguard:
+    strategy:
+      matrix:
+        python-version: ["3.8", "3.13"]
     runs-on: ubuntu-latest
-    container:
-      image: ghcr.io/astral-sh/uv:debian-slim
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
-
+      - name: Set up Python ${{ matrix.python-version }}
+        uses: actions/setup-python@v4
+        with:
+          python-version: ${{ matrix.python-version }}
+      - name: Set up Rust
+        run: |
+          rustup toolchain install --profile minimal --no-self-update
+      - name: Install uv
+        uses: astral-sh/setup-uv@v5
+      - name: Install dependencies
+        run: |
+          uv sync --dev
       - name: Run tests with uv
         run: |
           export UV_LINK_MODE=copy
-          uv sync --all-extras
           uv run pytest tests
 
   test-tox-sqlguard:
