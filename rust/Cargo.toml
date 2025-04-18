@@ -2,6 +2,14 @@
 name = "sql-rs"
 version = "0.1.0"
 edition = "2021"
+# Packaging stuff
+description = "Rust library to use inside pytest-sqlguard"
+authors = ["Manu <manuel.vives@paylead.fr"]
+readme = "../README.md"
+license = "MIT"
+homepage = "https://github.com/PayLead/pytest-sqlguard"
+documentation = "https://github.com/PayLead/pytest-sqlguard"
+repository = "https://github.com/PayLead/pytest-sqlguard"
 
 [lib]
 name = "sqlrs"
