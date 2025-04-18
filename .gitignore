@@ -178,3 +178,6 @@ pyrightconfig.json
 
 # We don't version uv.lock
 uv.lock
+
+# We don't freeze the deps for Cargo neither
+rust/Cargo.lock
