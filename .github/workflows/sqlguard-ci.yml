@@ -54,25 +54,23 @@ jobs:
       - name: Run Tox suite
         run: tox run -- tests
 
-  build-sqlguard:
-    needs: [test-sqlguard, test-tox-sqlguard]
-    if: startsWith(github.ref, 'refs/tags/')
+  build-sqlguard-sdist:
     runs-on: ubuntu-latest
-    container:
-      image: ghcr.io/astral-sh/uv:debian-slim
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
-      - name: Build package
-        run: uv build
-      - name: "Upload Artifact"
+      - name: Build sdist
+        uses: PyO3/maturin-action@v1
+        with:
+          command: sdist
+          args: --out dist --manifest-path rust/Cargo.toml
+      - name: Upload sdist
         uses: actions/upload-artifact@v4
         with:
-          name: sqlguard-dist
-          path: dist
-          retention-days: 5
+          path: dist/*.tar.gz
+
   publish-sqlguard:
-    needs: [build-sqlguard]
+    needs: [build-sqlguard-sdist]
     if: startsWith(github.ref, 'refs/tags/')
     runs-on: ubuntu-latest
     permissions:
