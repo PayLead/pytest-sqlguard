@@ -158,7 +158,7 @@ def sqlguard(
             path=reference_data_filename,
             name=name,
             fail_on_missing_reference_data=fail_on_missing_reference_data,
-            overwrite_reference_data=overwrite_reference_data,
+            overwrite_reference_data=overwrite,
             simplify_queries=simplify,
             lock_path=lock_path,
             enter_funcs=enter_funcs,
