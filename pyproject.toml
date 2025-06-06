@@ -1,6 +1,6 @@
 [project]
 name = "pytest-sqlguard"
-version = "2025.311.0"
+version = "2025.606.0"
 description = "Pytest fixture to record and check SQL Queries made by SQLAlchemy"
 authors = [{ name = "Manu", email = "manuel.vives@paylead.fr" }]
 readme = "README.md"
@@ -91,7 +91,7 @@ pythonPlatform = "Linux"
 executionEnvironments = [{ root = "src" }]
 
 [tool.bumpver]
-current_version = "2025.311.0"
+current_version = "2025.606.0"
 version_pattern = "YYYY.MM0D.INC0[-TAG]"
 commit_message = "bump version {old_version} -> {new_version}"
 tag_message = "{new_version}"
